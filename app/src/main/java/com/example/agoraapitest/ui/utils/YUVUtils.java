@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.utils;
+package com.example.agoraapitest.utils;
 
 import static android.renderscript.Element.RGBA_8888;
 import static android.renderscript.Element.U8;

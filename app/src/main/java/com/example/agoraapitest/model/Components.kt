@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.model
+package com.example.agoraapitest.model
 
 data class Component(
     val id: Int,

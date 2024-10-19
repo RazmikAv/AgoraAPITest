@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.ui.home
+package com.example.agoraapitest.ui.home
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -14,10 +14,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.dp
-import io.agora.api.example.compose.model.Component
-import io.agora.api.example.compose.model.Example
-import io.agora.api.example.compose.ui.common.APIExampleScaffold
-import io.agora.api.example.compose.ui.example.ExampleItem
+import com.example.agoraapitest.model.Component
+import com.example.agoraapitest.model.Example
+import com.example.agoraapitest.ui.common.APIExampleScaffold
+import com.example.agoraapitest.ui.example.ExampleItem
 
 @Composable
 fun Home(

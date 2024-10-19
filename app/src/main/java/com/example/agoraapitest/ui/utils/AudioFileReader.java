@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.utils;
+package com.example.agoraapitest.utils;
 
 import android.content.Context;
 import android.os.Process;

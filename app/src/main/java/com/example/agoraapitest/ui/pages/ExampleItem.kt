@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.ui.example
+package com.example.agoraapitest.ui.example
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -19,7 +19,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
-import io.agora.api.example.compose.model.Example
+import com.example.agoraapitest.model.Example
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable

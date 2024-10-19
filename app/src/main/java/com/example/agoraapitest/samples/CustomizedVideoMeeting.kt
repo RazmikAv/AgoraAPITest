@@ -1,16 +1,19 @@
-package io.agora.api.example.compose.samples
+package com.example.agoraapitest.samples
 
 import android.Manifest
 import android.view.View
 import android.widget.Toast
 import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.getValue
@@ -21,17 +24,17 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.agora.api.example.compose.BuildConfig
-import io.agora.api.example.compose.data.SettingPreferences
-import io.agora.api.example.compose.ui.common.ChannelNameInput
-import io.agora.api.example.compose.ui.common.VideoGrid
-import io.agora.api.example.compose.ui.common.VideoStatsInfo
-import io.agora.api.example.compose.utils.TokenUtils
+import com.example.agoraapitest.BuildConfig
+import com.example.agoraapitest.data.SettingPreferences
+import com.example.agoraapitest.ui.common.ChannelNameInput
+import com.example.agoraapitest.ui.common.VideoGrid
+import com.example.agoraapitest.ui.common.VideoStatsInfo
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler
@@ -41,17 +44,17 @@ import io.agora.rtc2.video.VideoCanvas
 import io.agora.rtc2.video.VideoEncoderConfiguration
 
 
-
 @Composable
-fun JoinChannelVideo() {
+fun JoinChannelVideoToken() {
     val context = LocalContext.current
     val lifecycleOwner = LocalLifecycleOwner.current
     val keyboard = LocalSoftwareKeyboardController.current
     var isJoined by rememberSaveable { mutableStateOf(false) }
     var channelName by rememberSaveable { mutableStateOf("") }
+    var token by rememberSaveable { mutableStateOf("") }
     var localUid by rememberSaveable { mutableIntStateOf(0) }
     var videoIdList by rememberSaveable { mutableStateOf(listOf<Int>()) }
-    val statsMap  = remember { mutableStateMapOf(0 to VideoStatsInfo()) }
+    val statsMap = remember { mutableStateMapOf(0 to VideoStatsInfo()) }
 
     val rtcEngine = remember {
         RtcEngine.create(RtcEngineConfig().apply {
@@ -155,9 +158,7 @@ fun JoinChannelVideo() {
                 val mediaOptions = ChannelMediaOptions()
                 mediaOptions.channelProfile = Constants.CHANNEL_PROFILE_LIVE_BROADCASTING
                 mediaOptions.clientRoleType = Constants.CLIENT_ROLE_BROADCASTER
-                TokenUtils.gen(channelName, 0) {
-                    rtcEngine.joinChannel(it, channelName, 0, mediaOptions)
-                }
+                rtcEngine.joinChannel(token, channelName, 0, mediaOptions)
 
             } else {
                 // Permission is denied
@@ -165,11 +166,13 @@ fun JoinChannelVideo() {
             }
         }
 
-    JoinChannelVideoView(
+    JoinChannelVideoTokenView(
         channelName = channelName,
+        token = token,
         isJoined = isJoined,
-        onJoinClick = {
-            channelName = it
+        onJoinClick = { channel, t ->
+            channelName = channel
+            token = t
             keyboard?.hide()
             permissionLauncher.launch(
                 arrayOf(
@@ -195,11 +198,12 @@ fun JoinChannelVideo() {
 
 @Preview
 @Composable
-private fun JoinChannelVideoPreview() {
-    JoinChannelVideoView(
+private fun JoinChannelVideoTokenPreview() {
+    JoinChannelVideoTokenView(
         channelName = "Channel Name",
+        token = "",
         isJoined = false,
-        onJoinClick = {},
+        onJoinClick = { c, t -> },
         onLeaveClick = {},
         videoIdList = listOf(0, 1, 2, 3),
         setupVideo = { _, _, _ -> }
@@ -207,35 +211,53 @@ private fun JoinChannelVideoPreview() {
 }
 
 @Composable
-private fun JoinChannelVideoView(
+private fun JoinChannelVideoTokenView(
     channelName: String,
+    token: String,
     isJoined: Boolean,
-    onJoinClick: (String) -> Unit,
+    onJoinClick: (String, String) -> Unit,
     onLeaveClick: () -> Unit,
     videoIdList: List<Int>,
     setupVideo: (View, Int, Boolean) -> Unit,
-    statsMap : Map<Int, VideoStatsInfo> = emptyMap()
+    statsMap: Map<Int, VideoStatsInfo> = emptyMap()
 ) {
-    Box {
-        Column(
-            Modifier
-                .fillMaxHeight()
-                .fillMaxWidth()
-        ) {
-            VideoGrid(
-                modifier = Modifier.height(600.dp),
-                videoIdList = videoIdList,
-                setupVideo = setupVideo,
-                statsMap = statsMap
-            )
-            Spacer(modifier = Modifier.weight(1.0f))
-            ChannelNameInput(
-                channelName = channelName,
-                isJoined = isJoined,
-                onJoinClick = onJoinClick,
-                onLeaveClick = onLeaveClick
+    var tokenText by rememberSaveable { mutableStateOf(token) }
+    Column(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+    ) {
+        VideoGrid(
+            modifier = Modifier.fillMaxHeight(0.8f),
+            videoIdList = videoIdList,
+            setupVideo = setupVideo,
+            statsMap = statsMap
+        )
+        Spacer(Modifier.weight(1.0f))
+        Row {
+            TextField(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                value = tokenText,
+                onValueChange = { tokenText = it },
+                label = { Text("Token") },
+                singleLine = true,
+                colors = TextFieldDefaults.colors(
+                    focusedContainerColor = Color.Transparent,
+                    unfocusedContainerColor = Color.Transparent,
+                    errorContainerColor = Color.Transparent
+                )
             )
         }
+        ChannelNameInput(
+            channelName = channelName,
+            isJoined = isJoined,
+            onJoinClick = {
+                onJoinClick(it, tokenText)
+            },
+            onLeaveClick = onLeaveClick
+        )
     }
 }
 

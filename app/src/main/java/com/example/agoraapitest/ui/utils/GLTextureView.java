@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.utils;
+package com.example.agoraapitest.utils;
 
 import static android.opengl.EGL14.EGL_BAD_ACCESS;
 import static android.opengl.EGL14.EGL_BAD_ALLOC;

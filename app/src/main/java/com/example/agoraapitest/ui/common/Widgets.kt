@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.ui.common
+package com.example.agoraapitest.ui.common
 
 import android.content.Context
 import android.util.Log
@@ -49,7 +49,7 @@ import androidx.compose.ui.unit.TextUnitType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.viewinterop.AndroidView
-import io.agora.api.example.compose.R
+import com.example.agoraapitest.R
 import io.agora.rtc2.IRtcEngineEventHandler
 
 @Composable

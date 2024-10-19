@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.samples
+package com.example.agoraapitest.samples
 
 import android.Manifest
 import android.view.View
@@ -30,11 +30,11 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.agora.api.example.compose.BuildConfig
-import io.agora.api.example.compose.data.SettingPreferences
-import io.agora.api.example.compose.ui.common.ChannelNameInput
-import io.agora.api.example.compose.ui.common.VideoGrid
-import io.agora.api.example.compose.ui.common.VideoStatsInfo
+import com.example.agoraapitest.BuildConfig
+import com.example.agoraapitest.data.SettingPreferences
+import com.example.agoraapitest.ui.common.ChannelNameInput
+import com.example.agoraapitest.ui.common.VideoGrid
+import com.example.agoraapitest.ui.common.VideoStatsInfo
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler

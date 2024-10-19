@@ -1,5 +1,5 @@
 
-package io.agora.api.example.compose.ui.common
+package com.example.agoraapitest.ui.common
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.material3.ExperimentalMaterial3Api

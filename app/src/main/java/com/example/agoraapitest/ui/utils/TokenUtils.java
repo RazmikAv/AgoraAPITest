@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.utils;
+package com.example.agoraapitest.utils;
 
 import android.os.Handler;
 import android.os.Looper;
@@ -13,7 +13,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.Objects;
 
-import io.agora.api.example.compose.BuildConfig;
+import com.example.agoraapitest.BuildConfig;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;

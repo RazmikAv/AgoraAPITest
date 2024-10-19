@@ -1,4 +1,4 @@
-package io.agora.api.example.compose.samples
+package com.example.agoraapitest.samples
 
 import android.os.Handler
 import android.os.Looper
@@ -25,13 +25,13 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.res.stringResource
-import io.agora.api.example.compose.BuildConfig
-import io.agora.api.example.compose.R
-import io.agora.api.example.compose.data.SettingPreferences
-import io.agora.api.example.compose.ui.common.ChannelNameInput
-import io.agora.api.example.compose.ui.common.SwitchRaw
-import io.agora.api.example.compose.ui.common.VideoGrid
-import io.agora.api.example.compose.utils.TokenUtils
+import com.example.agoraapitest.BuildConfig
+import com.example.agoraapitest.R
+import com.example.agoraapitest.data.SettingPreferences
+import com.example.agoraapitest.ui.common.ChannelNameInput
+import com.example.agoraapitest.ui.common.SwitchRaw
+import com.example.agoraapitest.ui.common.VideoGrid
+import com.example.agoraapitest.utils.TokenUtils
 import io.agora.rtc2.ChannelMediaOptions
 import io.agora.rtc2.Constants
 import io.agora.rtc2.IRtcEngineEventHandler

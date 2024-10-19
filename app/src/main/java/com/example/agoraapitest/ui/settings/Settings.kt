@@ -1,6 +1,6 @@
 @file:OptIn(ExperimentalMaterial3Api::class)
 
-package io.agora.api.example.compose.ui.settings
+package com.example.agoraapitest.ui.settings
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,10 +23,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import io.agora.api.example.compose.R
-import io.agora.api.example.compose.data.SettingPreferences
-import io.agora.api.example.compose.ui.common.APIExampleScaffold
-import io.agora.api.example.compose.ui.common.DropdownMenuRaw
+import com.example.agoraapitest.R
+import com.example.agoraapitest.data.SettingPreferences
+import com.example.agoraapitest.ui.common.APIExampleScaffold
+import com.example.agoraapitest.ui.common.DropdownMenuRaw
 import io.agora.rtc2.RtcEngine
 import io.agora.rtc2.RtcEngineConfig
 import io.agora.rtc2.video.VideoEncoderConfiguration
